@@ -41,9 +41,11 @@ makeCacheMatrix <- function(x = matrix()) {
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
         i<-x$getinverse()
+        
         if(!is.null(i)){ # to make sure that inverse is computed only once
                 retun(i)
         }
+        
         data<-x$get()
         if(nrow(data)==ncol(data)){ # this checks if matrix is a square matrix
                 i<-solve(data, ...)
@@ -51,6 +53,7 @@ cacheSolve <- function(x, ...) {
         else{
                 stop("Not a square matrix!!!")
         }
+        
         x$setinverse(i)
         i
 }
